@@ -33,8 +33,8 @@ export default class App extends Component {
 
   handleInput() {
     let newState = this.state;
-    newState.item.unshift(newState.input)
-    console.log(newState)
+    newState.item.unshift({ text: newState.input, checked: false })
+    newState.input = ''
     this.setState(newState)
   }
 
@@ -52,7 +52,9 @@ export default class App extends Component {
           behavior={Platform.OS === "ios" ? "padding" : "height"}
         >
           <TextInput style={styles.input} placeholder='Type Here' value={this.state.input} onChangeText={(text) => this.handleTextChange(text)}></TextInput>
-          <Pressable style={styles.addButton} onPress={() => this.handleInput}> <Text style={styles.inputText}>Add</Text> </Pressable >
+          <TouchableOpacity style={styles.addButton} onPress={() => this.handleInput()}>
+            <Text style={styles.inputText}>Add</Text>
+          </TouchableOpacity >
         </KeyboardAvoidingView>
       </SafeAreaView>
     );
