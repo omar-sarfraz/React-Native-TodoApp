@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView, StyleSheet, Text, View, Pressable, Platform, TouchableOpacity, KeyboardAvoidingView, TextInput } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, Text, View, Pressable, Platform, TouchableOpacity, KeyboardAvoidingView, TextInput } from 'react-native';
 
 export default class App extends Component {
 
@@ -42,7 +42,7 @@ export default class App extends Component {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.containerInner}>
-          <Text style={{ fontSize: 24, color: "white", marginVertical: 8 }}>Tasks</Text>
+          <Text style={{ fontSize: 30, color: "white", marginVertical: 20 }}>Tasks</Text>
           {
             this.state.item.map((item, index) => <Item item={item} key={index} onPress={() => this.onPress(index)} onDeletePress={() => this.onDeletePress(index)} />)
           }
@@ -69,7 +69,7 @@ class Item extends Component {
           <Pressable style={checked === "true" ? { ...styles.checkbox, backgroundColor: "white" } : styles.checkbox} onPress={this.props.onPress}>
             {checked === "true" ? <Text style={{ color: "#5981a6" }}>✔</Text> : null}
           </Pressable>
-          <Text style={{ color: "#000", textDecorationLine: checked === "true" ? "line-through" : "none" }}>{text}</Text>
+          <Text style={{ color: "#000", fontSize: 18, textDecorationLine: checked === "true" ? "line-through" : "none" }}>{text}</Text>
         </View>
         <TouchableOpacity onPress={this.props.onDeletePress}>
           <Text style={styles.delete}>Delete</Text>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#5981a6',
     alignItems: "center",
     justifyContent: "space-between",
-    paddingTop: 50
+    paddingTop: StatusBar.currentHeight
   },
   containerInner: {
     flex: 1,
@@ -108,9 +108,10 @@ const styles = StyleSheet.create({
     padding: 7
   },
   input: {
-    border: "1px solid #5981a6",
+    borderWidth: 1,
+    borderColor: "#5981a6",
     borderRadius: 20,
-    paddingHorizontal: 7,
+    paddingHorizontal: 10,
     width: "75%"
   },
   inputText: {
@@ -120,8 +121,7 @@ const styles = StyleSheet.create({
   item: {
     flexDirection: "row",
     backgroundColor: "#FFF",
-    padding: 7,
-    paddingVertical: 10,
+    padding: 10,
     borderRadius: 5,
     width: "95%",
     marginVertical: 3,
@@ -131,16 +131,17 @@ const styles = StyleSheet.create({
   itemInner: {
     width: "80%",
     flexDirection: "row",
-    gap: 5,
     alignItems: 'center'
   },
   checkbox: {
-    width: 20,
-    height: 20,
-    border: "2px solid #5981a6",
+    width: 25,
+    height: 25,
+    borderWidth: 1,
+    borderColor: "#5981a6",
     borderRadius: 5,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginRight: 10
   },
   delete: {
     color: "red",
