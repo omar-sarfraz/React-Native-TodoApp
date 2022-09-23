@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView, StatusBar, StyleSheet, Text, View, Pressable, Platform, TouchableOpacity, KeyboardAvoidingView, TextInput } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, Text, View, Pressable, Platform, TouchableOpacity, KeyboardAvoidingView, TextInput, ScrollView } from 'react-native';
 
 export default class App extends Component {
 
@@ -43,9 +43,11 @@ export default class App extends Component {
       <SafeAreaView style={styles.container}>
         <View style={styles.containerInner}>
           <Text style={{ fontSize: 30, color: "white", marginVertical: 20 }}>Tasks</Text>
-          {
-            this.state.item.map((item, index) => <Item item={item} key={index} onPress={() => this.onPress(index)} onDeletePress={() => this.onDeletePress(index)} />)
-          }
+          <ScrollView style={{ width: "100%" }} contentContainerStyle={{ alignItems: "center" }}>
+            {
+              this.state.item.map((item, index) => <Item item={item} key={index} onPress={() => this.onPress(index)} onDeletePress={() => this.onDeletePress(index)} />)
+            }
+          </ScrollView>
         </View>
         <KeyboardAvoidingView
           style={styles.bottomContainer}
